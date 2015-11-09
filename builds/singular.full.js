@@ -40,7 +40,7 @@
    ========================================================================== */
 
 /**
- * The core module contains members essential to the rest of framework.
+ * The core module contains top-level functions essential to the framework.
  */
 
 /* 
@@ -51,9 +51,27 @@
  * The isString function returns true is the value is a string.
  */
 
-singular.isString = function(value) { 
-	return typeof value === 'string'; 
-};
+singular.isString = function(value) { return typeof value === 'string'; };
+
+/* 
+   #isNumber
+   ========================================================================== */
+
+/**
+ * The isNumber function returns true is the value is a number.
+ */
+
+singular.isNumber = function(value) { return typeof value === 'number'; };
+
+/* 
+   #isBoolean
+   ========================================================================== */
+
+/**
+ * The isBoolean function returns true is the value is a number.
+ */
+
+singular.isBoolean = function(value) { return typeof value === 'boolean'; };
 
 /* 
    #isFunction
@@ -63,9 +81,17 @@ singular.isString = function(value) {
  * The isFunction function returns true is the value is a function.
  */
 
-singular.isFunction = function(value) { 
-	return typeof value === 'function'; 
-};
+singular.isFunction = function(value) { return typeof value === 'function'; };
+
+/* 
+   #isObject
+   ========================================================================== */
+
+/**
+ * The isObject function returns true is the value is a string.
+ */
+
+singular.isObject = function(value) { return typeof value === 'object'; };
 
 /* 
    #isDefined
@@ -75,9 +101,7 @@ singular.isFunction = function(value) {
  * The isDefined function returns true is the value is defined.
  */
 
-singular.isDefined = function(value) { 
-	return typeof value !== 'undefined'; 
-};
+singular.isDefined = function(value) { return typeof value !== 'undefined'; };
 
 /* 
    #isUndefined
@@ -87,32 +111,112 @@ singular.isDefined = function(value) {
  * The isUndefined function returns true is the value is undefined.
  */
 
-singular.isUndefined = function(value) { 
-	return typeof value === 'undefined'; 
-};
+singular.isUndefined = function(value) { return typeof value === 'undefined'; };
 
-
-
-/* ==========================================================================
-   #HTTP
+/* 
+   #concat
    ========================================================================== */
 
 /**
- * The http module contains members for making http requests.
+ * The concat function a concatenated string from multiple arguments.
  */
 
-singular.http = (function () {
+singular.concat = function() { return Array.prototype.slice.call(arguments).join(""); };
+
+/* ==========================================================================
+   #COM
+   ========================================================================== */
+
+/**
+ * The com module contains methods to create and render components.
+ */
+
+
+singular.com = (function () {
+
+/* 
+   #create
+   ========================================================================== */
+
+/**
+ * The create function is used to create an observable component.
+ */
+
+ var create = function(props) { return singular.isObject(props) ? props : {}; };
+
+/* 
+   #render
+   ========================================================================== */
+
+/**
+ * The render function is used to render a component on the page.
+ */
+
+ var render = function(component, el) {
+	initProp(component, el);
+	drawProp(component, el);
+ };
+
+/* 
+   #initProp
+   ========================================================================== */
+
+/**
+ * A component's init function is called when the component is created.
+ */
+
+var initProp = function(component, el) {
+	if(singular.isFunction(component.init)) {
+		component.init(el);
+	}
+};
+
+/* 
+   #drawProp
+   ========================================================================== */
+
+/**
+ * TA component's draw function is called when the component needs to render.
+ */
+
+var drawProp = function(component, el) {
+	function html() { return singular.com.template(component.draw(el), component); }
+
+	if(singular.isFunction(component.draw)) {
+		watch(component, function() {
+			el.innerHTML = html();
+		});
+		el.innerHTML = html();
+	}
+};
+
+/* 
+   #template
+   ========================================================================== */
+
+/**
+ * The template function returns a string from a handlebar string.
+ */
+
+var template = function(content, values) {
+    return content.replace(/{{(.+?)}}/g, function(match, prop) {
+        return prop.split('.').reduce(function(obj, key) { 
+            return obj[key];
+        }, values);
+    });  
+};
 
 /* 
    @return
    ========================================================================== */
 
 return {
-	
+	create: create, 
+	render: render,
+	template: template
 };
 
 })();
-
 
 
 
@@ -127,27 +231,137 @@ return {
 singular.route = (function () {
 
 /* 
+   #routes
+   ========================================================================== */
+
+/**
+ * The routes object contains all the route definitions.
+ */
+
+var routes = {};
+
+/* 
+   #map
+   ========================================================================== */
+
+/**
+ * The map function creates a route definition.
+ */
+
+var map = function(route, cb) { 
+	if(singular.isString(route) && singular.isFunction(cb)) {
+		routes[route] = cb;
+	}
+};
+
+/* 
+   #unmap
+   ========================================================================== */
+
+/**
+ * The unmap function removes a route definition.
+ */
+
+var unmap = function(route) {
+   if(singular.isDefined(routes[route])) {
+	  delete routes[route];
+   }
+};
+
+/* 
+   #clear
+   ========================================================================== */
+
+/**
+ * The clear function clears all route definitions.
+ */
+
+var clear = function() {
+	routes = {};
+};
+
+/* 
+   #call
+   ========================================================================== */
+
+/**
+ * The call function executes a route definition.
+ */
+
+var call = function(route) {
+   if(singular.isDefined(routes[route])) {
+	  routes[route]();
+   }
+};
+
+/* 
+   #listen
+   ========================================================================== */
+
+/**
+ * The listen function listens to the url hash for changes.
+ */
+
+var listen = function() {
+	window.addEventListener('load', dispatch);
+	window.addEventListener('hashchange', dispatch);
+};
+
+/* 
+   #ignore
+   ========================================================================== */
+
+/**
+ * The ignore function ignores changes made to the url hash.
+ */
+
+var ignore = function() {
+	window.removeEventListener('load', dispatch);
+	window.removeEventListener('hashchange', dispatch);
+};
+
+/* 
+   #dispatch
+   ========================================================================== */
+
+/**
+ * The dispatch function calls the route without query parameters.
+ */
+
+var dispatch = function() {
+	call(location.hash.split("?")[0]);
+};
+
+/* 
    @return
    ========================================================================== */
 
 return {
-	
+	map: map,
+	unmap: unmap,
+	clear: clear,
+	call: call,
+	listen: listen,
+	ignore: ignore
 };
 
 })();
 
 
 
-
 /* ==========================================================================
-   #COM
+   #HTTP
    ========================================================================== */
 
 /**
- * The com module contains members to create and render components.
+ * The http module contains members for making http requests.
  */
 
-singular.com = (function () {
+//
+// Coming Soon
+//
+
+singular.http = (function () {
 
 /* 
    @return

@@ -7,9 +7,9 @@ module.exports = function(grunt) {
 					'src/polyfills/watch.js',	
 					'src/singular.prefix.js',
 					'src/modules/core.js',
-					'src/modules/http.js',		
+					'src/modules/com.js',
 					'src/modules/route.js',
-					'src/modules/com.js',		
+					'src/modules/http.js',
 				    'src/singular.suffix.js'  	
 				],
 				dest: 'builds/singular.full.js'

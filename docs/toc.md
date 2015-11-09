@@ -2,8 +2,7 @@
 
 ## API Reference
 
-* [Com](api/com.md)
-* [Core](api/core.md)
-* [Http](api/http.md)
-* [Route](api/route.md)
-* [Text](api/text.md)
+* [Com Module](api/com.md)
+* [Core Module](api/core.md)
+* [Http Module](api/http.md)
+* [Route Module](api/route.md)

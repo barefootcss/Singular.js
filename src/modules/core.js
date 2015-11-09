@@ -17,6 +17,26 @@
 singular.isString = function(value) { return typeof value === 'string'; };
 
 /* 
+   #isNumber
+   ========================================================================== */
+
+/**
+ * The isNumber function returns true is the value is a number.
+ */
+
+singular.isNumber = function(value) { return typeof value === 'number'; };
+
+/* 
+   #isBoolean
+   ========================================================================== */
+
+/**
+ * The isBoolean function returns true is the value is a number.
+ */
+
+singular.isBoolean = function(value) { return typeof value === 'boolean'; };
+
+/* 
    #isFunction
    ========================================================================== */
 
@@ -25,6 +45,16 @@ singular.isString = function(value) { return typeof value === 'string'; };
  */
 
 singular.isFunction = function(value) { return typeof value === 'function'; };
+
+/* 
+   #isObject
+   ========================================================================== */
+
+/**
+ * The isObject function returns true is the value is a string.
+ */
+
+singular.isObject = function(value) { return typeof value === 'object'; };
 
 /* 
    #isDefined
@@ -43,7 +73,15 @@ singular.isDefined = function(value) { return typeof value !== 'undefined'; };
 /**
  * The isUndefined function returns true is the value is undefined.
  */
-a
+
 singular.isUndefined = function(value) { return typeof value === 'undefined'; };
 
+/* 
+   #concat
+   ========================================================================== */
 
+/**
+ * The concat function a concatenated string from multiple arguments.
+ */
+
+singular.concat = function() { return Array.prototype.slice.call(arguments).join(""); };
