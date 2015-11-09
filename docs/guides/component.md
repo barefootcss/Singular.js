@@ -4,8 +4,6 @@ A component is a collection of user-defined properties that are observed for cha
 
     <html>
         <body>
-            <div id="example"></div>
-
             <script src="../builds/singular.full.js"></script>
             <script>
                 var example = new singular.com.create({
@@ -13,13 +11,11 @@ A component is a collection of user-defined properties that are observed for cha
                 });
 
                 //
-                // Render the component in <div id="#example"></div>.
+                // Render the component on the page.
                 //
 
-                singular.com.render(example, document.getElementById("example"));
-
+                singular.com.render(example, document.body);
             </script>
-
         </body>
     </html>
 
@@ -29,8 +25,6 @@ The `draw` reserved property calls a function that returns the HTML of your comp
 
     <html>
         <body>
-            <div id="#example"></div>
-
             <script src="singular.min.js">
             <script>
                 var example = new singular.com.create({
@@ -41,10 +35,10 @@ The `draw` reserved property calls a function that returns the HTML of your comp
                 });
 
                 //
-                // Renders the component in <div id="example"></div>.
+                // Render the component on the page.
                 //
 
-                singular.com.render(example, document.getElementById("#example"));
+                singular.com.render(example, document.body);
             </script>
         </body>
     </html>
@@ -54,8 +48,6 @@ The `draw` reserved property calls a function that returns the HTML of your comp
 Each time a user-defined property changes, the `draw` callback function will update the UI.
     <html>
         <body>
-            <div id="example"></div>
-
             <script src="../builds/singular.full.js"></script>
             <script>
                 var example = new singular.com.create({
@@ -68,13 +60,11 @@ Each time a user-defined property changes, the `draw` callback function will upd
                 example.name = 'Singular';
                 
                 //
-                // Render the component in <div id="#example"></div>.
+                // Render the component on the page.
                 //
 
-                singular.com.render(example, document.getElementById("example"));
-
+                singular.com.render(example, document.body);
             </script>
-
         </body>
     </html>
 
@@ -84,8 +74,6 @@ Double-brackets in the 'draw' return string will be replaced with the user-defin
 
     <html>
         <body>
-            <div id="example"></div>
-
             <script src="../builds/singular.full.js"></script>
             <script>
                 var example = new singular.com.create({
@@ -98,13 +86,11 @@ Double-brackets in the 'draw' return string will be replaced with the user-defin
                 example.name = 'Singular';
 
                 //
-                // Render the component in <div id="#example"></div>.
+                // Render the component on the page.
                 //
 
-                singular.com.render(example, document.getElementById("example"));
-
+                singular.com.render(example, document.body);
             </script>
-
         </body>
     </html>
 
@@ -114,8 +100,6 @@ The `singular.concat` function retuns a string from an array, making writing HTM
 
     <html>
         <body>
-            <div id="example"></div>
-
             <script src="../builds/singular.full.js"></script>
             <script>
                 var example = new singular.com.create({
@@ -132,13 +116,11 @@ The `singular.concat` function retuns a string from an array, making writing HTM
                 example.name = 'Singular';
 
                 //
-                // Render the component in <div id="#example"></div>.
+                // Render the component on the page.
                 //
 
-                singular.com.render(example, document.getElementById("example"));
-
+                singular.com.render(example, document.body);
             </script>
-
         </body>
     </html>
 
@@ -148,8 +130,6 @@ The `init` reserved property is ideal for writing event handlers, since it is ca
     
     <html>
         <body>
-            <div id="example"></div>
-
             <script src="../builds/singular.full.js"></script>
             <script>
                 var example = new singular.com.create({
@@ -171,12 +151,10 @@ The `init` reserved property is ideal for writing event handlers, since it is ca
                 example.name = 'Singular';
 
                 //
-                // Render the component in <div id="#example"></div>.
+                // Render the component on the page.
                 //
 
-                singular.com.render(example, document.getElementById("example"));
-
+                singular.com.render(example, document.body);
             </script>
-
         </body>
     </html>

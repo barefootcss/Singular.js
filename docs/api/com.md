@@ -28,8 +28,6 @@ The `render` function is used to render a component on the page.
 
 	<html>
 		<body>
-			<div id="example"></div>
-
 			<script src="singular.min.js"></script>
 
 			<script>
@@ -39,7 +37,11 @@ The `render` function is used to render a component on the page.
 					}	
 				});
 
-				singular.com.render(component, '#example');
+				singular.com.render(component, document.body);
 			</script>
 		</body>
 	</html>	
+
+## Properties
+
+

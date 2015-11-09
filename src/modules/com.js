@@ -27,10 +27,12 @@ singular.com = (function () {
  * The render function is used to render a component on the page.
  */
 
- var render = function(component, el) {
-	initProp(component, el);
-	drawProp(component, el);
- };
+var render = function(component, el) {
+	if (singular.isObject(component) && singular.isDefined(el)) {
+		initProp(component, el);
+		drawProp(component, el);
+	}	
+};
 
 /* 
    #initProp
