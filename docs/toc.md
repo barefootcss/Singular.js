@@ -1,5 +1,9 @@
 # Documentation
 
+## Guides
+
+* [Building a Component](guides/component.md)
+
 ## API Reference
 
 * [Com Module](api/com.md)
