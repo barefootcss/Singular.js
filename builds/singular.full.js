@@ -118,11 +118,26 @@ singular.isUndefined = function(value) { return typeof value === 'undefined'; };
    ========================================================================== */
 
 /**
- * The concat function a concatenated string from multiple arguments.
+ * The concat function returns a concatenated string from multiple arguments.
  */
 
 singular.concat = function() { return Array.prototype.slice.call(arguments).join(""); };
 
+/* 
+   #template
+   ========================================================================== */
+
+/**
+ * The template function replaces double-brackets in a string with values.
+ */
+
+singular.template = function(content, values) {
+    return content.replace(/{{(.+?)}}/g, function(match, prop) {
+        return prop.split('.').reduce(function(obj, key) { 
+            return obj[key];
+        }, values);
+    });  
+};
 /* ==========================================================================
    #COM
    ========================================================================== */
@@ -162,7 +177,7 @@ singular.com = (function () {
    ========================================================================== */
 
 /**
- * A component's init function is called when the component is created.
+ * A component's init function is called its created.
  */
 
 var initProp = function(component, el) {
@@ -176,11 +191,11 @@ var initProp = function(component, el) {
    ========================================================================== */
 
 /**
- * TA component's draw function is called when the component needs to render.
+ * TA component's draw function is called it needs to render.
  */
 
 var drawProp = function(component, el) {
-	function html() { return singular.com.template(component.draw(el), component); }
+	function html() { return singular.template(component.draw(el), component); }
 
 	if(singular.isFunction(component.draw)) {
 		watch(component, function() {
@@ -191,29 +206,12 @@ var drawProp = function(component, el) {
 };
 
 /* 
-   #template
-   ========================================================================== */
-
-/**
- * The template function returns a string from a handlebar string.
- */
-
-var template = function(content, values) {
-    return content.replace(/{{(.+?)}}/g, function(match, prop) {
-        return prop.split('.').reduce(function(obj, key) { 
-            return obj[key];
-        }, values);
-    });  
-};
-
-/* 
    @return
    ========================================================================== */
 
 return {
 	create: create, 
-	render: render,
-	template: template
+	render: render
 };
 
 })();

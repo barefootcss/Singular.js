@@ -22,6 +22,22 @@ The `concat` function returns a concatenated string from multiple arguments.
 		</body>
 	</html>
 
+__template(**string**, **{values}**)__
+
+The `template` function replaces double-brackets in a string with values.
+
+	<html>
+		<body>
+			<script src="singular.min.js"></script>
+
+			<script>
+				console.log(singular.fromTemplate("Hello {{name}}", {
+					name: 'Singular'	
+				})); //Returns "Hello Singular"
+			</script>
+		</body>
+	</html>
+
 __isBoolean(*value*)__
 
 The `isBoolean` function returns true is the value is a boolean.
@@ -35,7 +51,7 @@ The `isBoolean` function returns true is the value is a boolean.
 			</script>
 		</body>
 	</html>
-	
+
 __isDefined(*value*)__
 
 The `isDefined` function returns true is the value is defined.

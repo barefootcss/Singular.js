@@ -81,7 +81,23 @@ singular.isUndefined = function(value) { return typeof value === 'undefined'; };
    ========================================================================== */
 
 /**
- * The concat function a concatenated string from multiple arguments.
+ * The concat function returns a concatenated string from multiple arguments.
  */
 
 singular.concat = function() { return Array.prototype.slice.call(arguments).join(""); };
+
+/* 
+   #template
+   ========================================================================== */
+
+/**
+ * The template function replaces double-brackets in a string with values.
+ */
+
+singular.template = function(content, values) {
+    return content.replace(/{{(.+?)}}/g, function(match, prop) {
+        return prop.split('.').reduce(function(obj, key) { 
+            return obj[key];
+        }, values);
+    });  
+};

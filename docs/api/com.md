@@ -43,23 +43,3 @@ The `render` function is used to render a component on the page.
 			</script>
 		</body>
 	</html>	
-
-__template(*content*, *values*)__
-
-The `template` function returns a string from a handlebar string.
-
-This is called automatically by the draw function:
-
-	<html>
-		<body>
-			<div id="example"></div>
-
-			<script src="singular.min.js"></script>
-
-			<script>
-				console.log(singular.com.template("Hello {{name}}", {
-					name: 'Singular'
-				}));
-			</script>
-		</body>
-	</html>	
