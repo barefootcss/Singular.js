@@ -46,6 +46,7 @@ The `draw` reserved property calls a function that returns the HTML of your comp
 ## Changing Properties
 
 Each time a user-defined property changes, the `draw` callback function will update the UI.
+
     <html>
         <body>
             <script src="../builds/singular.full.js"></script>
