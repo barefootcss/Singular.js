@@ -1,4 +1,4 @@
-# Singular JS
+# Singular.js
 
 SingularJS is a lightweight framework for building components. It is still under development.
 
