@@ -1,5 +1,18 @@
 # Building a Component
 
+Let's build a basic component. Make a`example.html` file and paste the following code.
+    
+    <html>
+        <body>
+            <script src="../builds/singular.full.js"></script>
+            <script>
+ 
+            </script>
+        </body>
+    </html>
+
+## What is a Component
+
 A component is a collection of user-defined properties that are observed for changes.
 
     <html>
@@ -9,17 +22,11 @@ A component is a collection of user-defined properties that are observed for cha
                 var example = new singular.com.create({
                     name: 'World'
                 });
-
-                //
-                // Render the component on the page.
-                //
-
-                singular.com.render(example, document.body);
             </script>
         </body>
     </html>
 
-## Heart of a Component
+## The Heart of a Component
 
 The `draw` reserved property calls a function that returns the HTML of your component.
 
