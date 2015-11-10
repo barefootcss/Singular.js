@@ -41,6 +41,16 @@ singular.isBoolean = function(value) { return typeof value === 'boolean'; };
    ========================================================================== */
 
 /**
+ * The isArray function returns true is the value is an array.
+ */
+
+singular.isArray = function(value) { return value.constructor === Array; };
+
+/* 
+   #isFunction
+   ========================================================================== */
+
+/**
  * The isFunction function returns true is the value is a function.
  */
 
@@ -85,6 +95,30 @@ singular.isUndefined = function(value) { return typeof value === 'undefined'; };
  */
 
 singular.concat = function() { return Array.prototype.slice.call(arguments).join(""); };
+
+/* 
+   #each
+   ========================================================================== */
+
+/**
+ * The each function iterates through an object's properties.
+ */
+
+singular.each = function(obj, cb) {
+    if(singular.isArray(obj)) {
+        obj.forEach(function(value) {
+            cb(value);
+        });
+        return;
+    }    
+    if(singular.isObject(obj)) {
+        for (var prop in obj) {
+            if (obj.hasOwnProperty(prop)) {
+                cb(obj, obj[prop]);
+            }
+        }
+    }
+};
 
 /* 
    #template

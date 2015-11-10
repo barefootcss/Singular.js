@@ -22,6 +22,26 @@ The `concat` function returns a concatenated string from multiple arguments.
 		</body>
 	</html>
 
+__each(*value*, *cb*...)__
+
+The `each` function executes a callback for each item in an object or array. 
+
+	<html>
+		<body>
+			<script src="singular.min.js"></script>
+
+			<script>
+				singular.each(["abc", "def"], function(value) {
+					console.log(value);
+				});
+				
+				singular.each({name:'eric'}, function(prop, value) {
+					console.log(value);
+				});
+			</script>
+		</body>
+	</html>
+
 __template(**string**, **{values}**)__
 
 The `template` function replaces double-brackets in a string with values.
@@ -34,6 +54,20 @@ The `template` function replaces double-brackets in a string with values.
 				console.log(singular.template("Hello {{name}}", {
 					name: 'Singular'	
 				})); //Returns "Hello Singular"
+			</script>
+		</body>
+	</html>
+
+__isArray(*value*)__
+
+The `isArray` function returns true is the value is an array.
+
+	<html>
+		<body>
+			<script src="singular.min.js"></script>
+
+			<script>
+				console.log(singular.isArray(["Singular"])); //Returns true
 			</script>
 		</body>
 	</html>
