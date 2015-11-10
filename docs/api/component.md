@@ -46,7 +46,7 @@ __renderAll(*component*, *selector*)__
 
 The `renderAll` function calls render() for each match on a selector.
 
-Note that changing the property of one component will update all. 
+> Note: Because this function places the *same component* in multiple containers, changing a property will effect all instances of it on your page. 
 
 	<html>
 		<body>
