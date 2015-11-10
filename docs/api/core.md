@@ -22,7 +22,7 @@ The `concat` function returns a concatenated string from multiple arguments.
 		</body>
 	</html>
 
-__each(*value*, *cb*...)__
+__each(*value*, *cb*)__
 
 The `each` function executes a callback for each item in an object or array. 
 
