@@ -7,7 +7,7 @@ module.exports = function(grunt) {
 					'src/polyfills/watch.js',	
 					'src/singular.prefix.js',
 					'src/modules/core.js',
-					'src/modules/com.js',
+					'src/modules/component.js',
 					'src/modules/route.js',
 					'src/modules/http.js',
 				    'src/singular.suffix.js'  	

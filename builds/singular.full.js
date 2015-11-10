@@ -139,15 +139,15 @@ singular.template = function(content, values) {
     });  
 };
 /* ==========================================================================
-   #COM
+   #COMPONENT
    ========================================================================== */
 
 /**
- * The com module contains methods to create and render components.
+ * The component module contains methods to create and render components.
  */
 
 
-singular.com = (function () {
+singular.component = (function () {
 
 /* 
    #create
@@ -413,7 +413,7 @@ var request = function(options) {
 
 var get = function(url, options) {
    	options = options || {};	
-	options.type = "GET";	
+	options.method = "GET";	
 	options.url = url;
 
 	return {
@@ -433,7 +433,7 @@ var get = function(url, options) {
 
 var post = function(url, data, options) {
    	options = options || {};	
-	options.type = "POST";	
+	options.method = "POST";	
 	options.url = url;
 	options.data = data;
 

@@ -31,7 +31,7 @@ The `template` function replaces double-brackets in a string with values.
 			<script src="singular.min.js"></script>
 
 			<script>
-				console.log(singular.fromTemplate("Hello {{name}}", {
+				console.log(singular.template("Hello {{name}}", {
 					name: 'Singular'	
 				})); //Returns "Hello Singular"
 			</script>

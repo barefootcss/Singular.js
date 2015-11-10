@@ -57,12 +57,12 @@ var request = function(options) {
    ========================================================================== */
 
 /**
- * The get function executes a get http request.
+ * The get shorthand function executes a http get request.
  */
 
 var get = function(url, options) {
    	options = options || {};	
-	options.type = "GET";	
+	options.method = "GET";	
 	options.url = url;
 
 	return {
@@ -77,12 +77,12 @@ var get = function(url, options) {
    ========================================================================== */
 
 /**
- * The get function executes a get http request.
+ * The get shorthand function executes a http post request.
  */
 
 var post = function(url, data, options) {
    	options = options || {};	
-	options.type = "POST";	
+	options.method = "POST";	
 	options.url = url;
 	options.data = data;
 

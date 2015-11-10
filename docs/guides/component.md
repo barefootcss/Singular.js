@@ -19,7 +19,7 @@ A component is a collection of user-defined properties that are observed for cha
         <body>
             <script src="../builds/singular.full.js"></script>
             <script>
-                var example = new singular.com.create({
+                var example = new singular.component.create({
                     name: 'World'
                 });
             </script>
@@ -34,7 +34,7 @@ The `draw` reserved property calls a function that returns the HTML of your comp
         <body>
             <script src="singular.min.js">
             <script>
-                var example = new singular.com.create({
+                var example = new singular.component.create({
                     name: 'World',
                     draw: function(el) {
                         return "<h1>Hello " + this.name + "</h1>"
@@ -45,7 +45,7 @@ The `draw` reserved property calls a function that returns the HTML of your comp
                 // Render the component on the page.
                 //
 
-                singular.com.render(example, document.body);
+                singular.component.render(example, document.body);
             </script>
         </body>
     </html>
@@ -58,7 +58,7 @@ Each time a user-defined property changes, the `draw` callback function will upd
         <body>
             <script src="../builds/singular.full.js"></script>
             <script>
-                var example = new singular.com.create({
+                var example = new singular.component.create({
                     name: 'World',
                     draw: function(el) {
                         return "<h1>Hello " + this.name + "</h1>"
@@ -71,7 +71,7 @@ Each time a user-defined property changes, the `draw` callback function will upd
                 // Render the component on the page.
                 //
 
-                singular.com.render(example, document.body);
+                singular.component.render(example, document.body);
             </script>
         </body>
     </html>
@@ -84,7 +84,7 @@ Double-brackets in the 'draw' return string will be replaced with the user-defin
         <body>
             <script src="../builds/singular.full.js"></script>
             <script>
-                var example = new singular.com.create({
+                var example = new singular.component.create({
                     name: 'World',
                     draw: function(el) {
                         return "<h1>Hello {{name}}</h1>"
@@ -97,7 +97,7 @@ Double-brackets in the 'draw' return string will be replaced with the user-defin
                 // Render the component on the page.
                 //
 
-                singular.com.render(example, document.body);
+                singular.component.render(example, document.body);
             </script>
         </body>
     </html>
@@ -110,7 +110,7 @@ The `singular.concat` function retuns a string from an array, making writing HTM
         <body>
             <script src="../builds/singular.full.js"></script>
             <script>
-                var example = new singular.com.create({
+                var example = new singular.component.create({
                     name: 'World',
                     draw: function(el) {
                         return singular.concat(
@@ -127,7 +127,7 @@ The `singular.concat` function retuns a string from an array, making writing HTM
                 // Render the component on the page.
                 //
 
-                singular.com.render(example, document.body);
+                singular.component.render(example, document.body);
             </script>
         </body>
     </html>
@@ -140,7 +140,7 @@ The `init` reserved property is ideal for writing event handlers, since it is ca
         <body>
             <script src="../builds/singular.full.js"></script>
             <script>
-                var example = new singular.com.create({
+                var example = new singular.component.create({
                     name: 'World',
                     init: function(el) {
                         el.addEventListener('click', function(e) {
@@ -162,7 +162,7 @@ The `init` reserved property is ideal for writing event handlers, since it is ca
                 // Render the component on the page.
                 //
 
-                singular.com.render(example, document.body);
+                singular.component.render(example, document.body);
             </script>
         </body>
     </html>

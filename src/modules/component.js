@@ -1,13 +1,13 @@
 /* ==========================================================================
-   #COM
+   #COMPONENT
    ========================================================================== */
 
 /**
- * The com module contains methods to create and render components.
+ * The component module contains methods to create and render components.
  */
 
 
-singular.com = (function () {
+singular.component = (function () {
 
 /* 
    #create
