@@ -22,9 +22,9 @@ The `create` function is used to create an observable component.
 		</body>
 	</html>	
 
-__render(*component*, *selector*)__
+__render(*component*, *el*)__
 
-The `render` function is used to render a component on the page.
+The `render` function is used to render a component in a container.
 
 	<html>
 		<body>
@@ -38,6 +38,32 @@ The `render` function is used to render a component on the page.
 				});
 
 				singular.com.render(component, document.body);
+			</script>
+		</body>
+	</html>	
+
+__renderAll(*component*, *selector*)__
+
+The `renderAll` function calls render() for each match on a selector.
+
+Note that changing the property of one component will update all. 
+
+	<html>
+		<body>
+			<div class="test"></div>
+			<div class="test"></div>
+			<div class="test"></div>
+			
+			<script src="singular.min.js"></script>
+
+			<script>
+				var component = new singular.com.create({
+					draw: function(el) {
+						return "<h1>Singular</h1>";
+					}	
+				});
+
+				singular.com.renderAll(component, ".test");
 			</script>
 		</body>
 	</html>	
@@ -63,6 +89,7 @@ The `init` property calls a function when the component is created.
 			</script>
 		</body>
 	</html>	
+
 __draw(*el*)__
 
 The `init` property calls a function when the component is created or changed.

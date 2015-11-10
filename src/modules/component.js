@@ -35,11 +35,28 @@ var render = function(component, el) {
 };
 
 /* 
+   #renderAll
+   ========================================================================== */
+
+/**
+ * The `renderAll` function calls render() for each match on a selector.
+ */
+
+var renderAll = function(component, selector) {
+	if (singular.isObject(component) && singular.isString(selector)) {
+		var els = document.querySelectorAll(selector);
+		Array.prototype.forEach.call(els, function(el, index) {
+			render(component, el);
+		});
+	}	
+};
+
+/* 
    #initProp
    ========================================================================== */
 
 /**
- * A component's init function is called its created.
+ * The `init` property calls a function when the component is created.
  */
 
 var initProp = function(component, el) {
@@ -53,7 +70,7 @@ var initProp = function(component, el) {
    ========================================================================== */
 
 /**
- * TA component's draw function is called it needs to render.
+ * The `draw` property calls a function when the component is created and changed.
  */
 
 var drawProp = function(component, el) {
@@ -73,7 +90,8 @@ var drawProp = function(component, el) {
 
 return {
 	create: create, 
-	render: render
+	render: render,
+	renderAll: renderAll
 };
 
 })();
