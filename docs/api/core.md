@@ -42,22 +42,6 @@ The `each` function executes a callback for each item in an object or array.
 		</body>
 	</html>
 
-__template(**string**, **{values}**)__
-
-The `template` function replaces double-brackets in a string with values.
-
-	<html>
-		<body>
-			<script src="singular.min.js"></script>
-
-			<script>
-				console.log(singular.template("Hello {{name}}", {
-					name: 'Singular'	
-				})); //Returns "Hello Singular"
-			</script>
-		</body>
-	</html>
-
 __isArray(*value*)__
 
 The `isArray` function returns true is the value is an array.
@@ -169,3 +153,111 @@ The `isUndefined` function returns true is the value is undefined.
 			</script>
 		</body>
 	</html>
+
+__renderOne(*value*, *el*||*selector* )__
+
+The `renderOne` function renders a value in a single container.
+
+> See the Developer Guides to learn more.
+
+	<html>
+		<body>
+			<script src="singular.min.js"></script>
+
+			<script>
+				var eric = {
+					draw: function() {
+						return "<h1>Hello World</h1>";
+					}
+				}
+
+				singular.renderOne(eric, document.body)
+			</script>
+		</body>
+	</html>
+
+__renderAll(*value*, *el*||*selector* )__
+
+The `renderAll` function renders a value in multiple containers.
+
+> See the Developer Guides to learn more.
+
+	<html>
+		<body>
+			<div></div>
+			<div></div>
+			<div></div>
+			
+			<script src="singular.min.js"></script>
+
+			<script>
+				var eric = {
+					draw: function() {
+						return "<h1>Hello World</h1>";
+					}
+				}
+
+				singular.renderAll(eric, "div")
+			</script>
+		</body>
+	</html>
+
+__template(**string**, **{values}**)__
+
+The `template` function replaces double-brackets in a string with values.
+
+	<html>
+		<body>
+			<script src="singular.min.js"></script>
+
+			<script>
+				console.log(singular.template("Hello {{name}}", {
+					name: 'Singular'	
+				})); //Returns "Hello Singular"
+			</script>
+		</body>
+	</html>
+
+## Properties
+
+There are two *reserved* properties used when rendering objects:
+
+__init(*el*)__
+
+The `init` property calls a function when the component is created.
+
+	<html>
+		<body>
+			<script src="singular.min.js"></script>
+
+			<script>
+				var component = new singular.com.create({
+					init: function(el) {
+						console.log("The component was initialized.");
+					}	
+				});
+
+				singular.renderOne(component, document.body);
+			</script>
+		</body>
+	</html>	
+
+__draw(*el*)__
+
+The `init` property calls a function when the component is created or changed.
+
+	<html>
+		<body>
+			<script src="singular.min.js"></script>
+
+			<script>
+				var component = new singular.com.create({
+					draw: function(el) {
+						return "<h1>Singular</h1>";
+					}	
+				});
+
+				singular.renderOne(component, document.body);
+			</script>
+		</body>
+	</html>	

@@ -1,3 +1,5 @@
+# This guide is obsolete. Please be patient while we update it.
+
 # Building a Component
 
 Let's build a basic component. Make a`example.html` file and paste the following code.

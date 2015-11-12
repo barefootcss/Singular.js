@@ -36,7 +36,7 @@
 
 (function (singular) {
 /* ==========================================================================
-   #CORE
+   #COM
    ========================================================================== */
 
 /**
@@ -104,6 +104,16 @@ singular.isFunction = function(value) { return typeof value === 'function'; };
 singular.isObject = function(value) { return typeof value === 'object'; };
 
 /* 
+   #isNodeList
+   ========================================================================== */
+
+/**
+ * The isNodeList function returns true is the value is a NodeList.
+ */
+
+singular.isNodeList = function(value) { return value == '[object NodeList]'; };
+
+/* 
    #isDefined
    ========================================================================== */
 
@@ -141,20 +151,167 @@ singular.concat = function() { return Array.prototype.slice.call(arguments).join
  * The each function iterates through an object's properties.
  */
 
-singular.each = function(obj, cb) {
-    if(singular.isArray(obj)) {
-        obj.forEach(function(value) {
-            cb(value);
+singular.each = function(value, cb) {
+
+    /**
+     * Value: Array
+     *
+     * If vallue is an array, iterate through the array values.
+     */
+
+    if(singular.isArray(value)) {
+        value.forEach(function(key) {
+            cb(key);
         });
         return;
     }    
-    if(singular.isObject(obj)) {
-        for (var prop in obj) {
-            if (obj.hasOwnProperty(prop)) {
-                cb(obj, obj[prop]);
+
+    /**
+     * Value: Object
+     *
+     * If value is an object, iterate through the object properties.
+     */
+    
+    if(singular.isObject(value)) {
+        for (var key in value) {
+            if (value.hasOwnProperty(key)) {
+                cb(value, value[key]);
             }
         }
     }
+};
+
+/* 
+   #renderOne
+   ========================================================================== */
+
+/**
+ * The render function renders a value in a single container.
+ */
+
+singular.renderOne = function(value, el) {
+
+	function html() { return singular.template(value.draw(el), value); }
+
+	/**
+	 * Element: Undefined
+	 *
+	 * If the element is undefined, break from the function.  
+	 */
+
+	if (singular.isUndefined(el)) {
+	 	return;
+	}
+
+	/**
+	 * Element: String
+	 *
+	 * If the element is a string, user querySelector
+	 */
+
+	if (singular.isString(el)) {
+	 	el = document.querySelector(el);
+	}
+
+	/**
+	 * Value: String
+	 *
+	 * If the value is a string, render the string's value.  
+	 */
+
+	if (singular.isString(value)) {
+	 	el.innerHTML = value;
+	}
+
+	/**
+	 * Value: Function
+	 *
+	 * If the value is a function, render the return value.  
+	 */
+
+	if (singular.isFunction(value)) {
+	 	el.innerHTML = value();
+	}
+
+	/**
+	 * Value: Init Function
+	 *
+	 * If the value is an object with an init function, call it.
+	 */
+
+	if (singular.isObject(value) && singular.isFunction(value.init)) {
+	 	value.init(el);
+	}
+
+	/**
+	 * Value: Draw Function
+	 *
+	 * If the value is an object with a draw function, call it.
+	 */
+
+	if (singular.isObject(value) && singular.isFunction(value.draw)) {
+		
+		/**
+		 * Observe the object for changes and redraw it.
+		 */
+
+		watch(value, function() {
+			el.innerHTML = html();
+		});
+
+		/**
+		 * Do an initial draw.
+		 */
+
+		el.innerHTML = html();
+	}
+
+};
+
+/* 
+   #renderAll
+   ========================================================================== */
+
+/**
+ * The render function renders a value in multiple containers.
+ */
+
+singular.renderAll = function(value, el) {
+
+	var els;
+
+	/**
+	 * Element: String
+	 *
+	 * If the element is a string, use querySelectorAll.  
+	 */
+
+	if (singular.isString(el)) {
+
+	 	els = document.querySelectorAll(el);
+
+		Array.prototype.forEach.call(els, function(el, index) {
+			singular.renderOne(value, el);
+		});
+
+	}
+
+	/**
+	 * Element: NodeList
+	 *
+	 * If the element is an array, just pass it.  
+	 */
+
+	if (singular.isNodeList(el)) {
+
+	 	els = el;
+
+		Array.prototype.forEach.call(els, function(el, index) {
+			singular.renderOne(value, el);
+		});
+
+	}
+
 };
 
 /* 
@@ -172,105 +329,6 @@ singular.template = function(content, values) {
         }, values);
     });  
 };
-/* ==========================================================================
-   #COMPONENT
-   ========================================================================== */
-
-/**
- * The component module contains methods to create and render components.
- */
-
-
-singular.component = (function () {
-
-/* 
-   #create
-   ========================================================================== */
-
-/**
- * The create function is used to create an observable component.
- */
-
- var create = function(props) { return singular.isObject(props) ? props : {}; };
-
-/* 
-   #render
-   ========================================================================== */
-
-/**
- * The render function is used to render a component on the page.
- */
-
-var render = function(component, el) {
-	if (singular.isObject(component) && singular.isDefined(el)) {
-		initProp(component, el);
-		drawProp(component, el);
-	}	
-};
-
-/* 
-   #renderAll
-   ========================================================================== */
-
-/**
- * The `renderAll` function calls render() for each match on a selector.
- */
-
-var renderAll = function(component, selector) {
-	if (singular.isObject(component) && singular.isString(selector)) {
-		var els = document.querySelectorAll(selector);
-		Array.prototype.forEach.call(els, function(el, index) {
-			render(component, el);
-		});
-	}	
-};
-
-/* 
-   #initProp
-   ========================================================================== */
-
-/**
- * The `init` property calls a function when the component is created.
- */
-
-var initProp = function(component, el) {
-	if(singular.isFunction(component.init)) {
-		component.init(el);
-	}
-};
-
-/* 
-   #drawProp
-   ========================================================================== */
-
-/**
- * The `draw` property calls a function when the component is created and changed.
- */
-
-var drawProp = function(component, el) {
-	function html() { return singular.template(component.draw(el), component); }
-
-	if(singular.isFunction(component.draw)) {
-		watch(component, function() {
-			el.innerHTML = html();
-		});
-		el.innerHTML = html();
-	}
-};
-
-/* 
-   @return
-   ========================================================================== */
-
-return {
-	create: create, 
-	render: render,
-	renderAll: renderAll
-};
-
-})();
-
-
 
 /* ==========================================================================
    #ROUTE
