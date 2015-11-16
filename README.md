@@ -2,9 +2,9 @@
 
 SingularJS is a lightweight framework for building components. It is still under development.
 
-[See the documentation](docs/toc.md)
+__[Guides & API Documentation](docs/toc.md)__
 
-# Quick Example
+# The Basics
 
 	<html>
 		<body>
