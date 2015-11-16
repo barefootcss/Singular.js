@@ -166,3 +166,77 @@ The `init` reserved property is ideal for writing event handlers, since it is ca
             </script>
         </body>
     </html>
+
+## Event Handling
+
+Most simple DOM manipulation can be done with double-brackets.
+    
+    <html>
+        <body>
+            <script src="../builds/singular.full.js"></script>
+            <script>
+                var example = {
+                    bgcolor: 'red',
+                    name: 'World',
+                    init: function(el) {
+                        el.addEventListener('click', function(e) {
+                            console.log("You clicked the component.");
+                        });
+                    },
+                    draw: function(el) {
+                        return singular.concat(
+                            '<h1 style="background: {{bgcolor}}">',
+                                'Hello {{name}}',
+                            '</h1>'
+                        );
+                    }
+                };
+
+                example.name = 'Singular';
+
+                //
+                // Render the component on the page.
+                //
+
+                singular.renderOne(example, document.body);
+            </script>
+        </body>
+    </html>    
+
+## jQuery Integration
+
+The `el` attribute can be wrapped inside of a jQuery object.
+
+    <html>
+        <body>
+            <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+            <script src="../builds/singular.full.js"></script>
+            <script>
+                var example = {
+                    bgcolor: 'red',
+                    name: 'World',
+                    init: function(el) {
+                        el.addEventListener('click', function(e) {
+                            console.log("You clicked the component.");
+                        });
+                    },
+                    draw: function(el) {
+                        $(el).css('margin', '1.5rem');
+                        return singular.concat(
+                            '<h1 style="background: {{bgcolor}}">',
+                                'Hello {{name}}',
+                            '</h1>'
+                        );
+                    }
+                };
+
+                example.name = 'Singular';
+
+                //
+                // Render the component on the page.
+                //
+
+                singular.renderOne(example, document.body);
+            </script>
+        </body>
+    </html>    
