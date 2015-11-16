@@ -2,24 +2,9 @@
 
 SingularJS is a lightweight framework for building components. It is still under development.
 
-__[Guides & API Documentation](docs/toc.md)__
+[Tutorials](docs/tutorials/tutorials.md)
 
-# The Basics
-
-	<html>
-		<body>
-			<script src="singular.min.js"></script>
-			<script>
-				var hello = {
-					name: 'Singular',
-					draw: function(el) {
-						return "<h1>Hello {{name}}</h1>";
-					}
-				}
-				singular.render(hello, document.body);
-			</script>
-		</body>
-	</html>
+[API Reference](docs/api/api.md)
 
 # License
 
