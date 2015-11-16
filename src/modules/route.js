@@ -51,7 +51,7 @@ var unmap = function(route) {
    ========================================================================== */
 
 /**
- * The clear function clears all route definitions.
+ * The clear function removes all route definitions.
  */
 
 var clear = function() {
@@ -63,7 +63,7 @@ var clear = function() {
    ========================================================================== */
 
 /**
- * The call function executes a route definition.
+ * The call function executes the callback of a route definition.
  */
 
 var call = function(route) {
@@ -77,7 +77,7 @@ var call = function(route) {
    ========================================================================== */
 
 /**
- * The listen function listens to the url hash for changes.
+ * The listen function listens to the URL fragment for changes.
  */
 
 var listen = function() {
@@ -90,7 +90,7 @@ var listen = function() {
    ========================================================================== */
 
 /**
- * The ignore function ignores changes made to the url hash.
+ * The ignore function stops listening to the URL fragment for changes.
  */
 
 var ignore = function() {

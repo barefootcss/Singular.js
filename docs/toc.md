@@ -2,11 +2,10 @@
 
 ## Guides
 
-* [Building a Component](guides/component.md)
+* [Building Components](guides/component.md)
 
 ## API Reference
 
-* [Com Module](api/com.md)
 * [Core Module](api/core.md)
 * [Http Module](api/http.md)
 * [Route Module](api/route.md)

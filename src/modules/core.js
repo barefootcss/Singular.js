@@ -31,17 +31,17 @@ singular.isNumber = function(value) { return typeof value === 'number'; };
    ========================================================================== */
 
 /**
- * The isBoolean function returns true is the value is a number.
+ * The isBoolean function returns true if the argument is a Boolean.
  */
 
 singular.isBoolean = function(value) { return typeof value === 'boolean'; };
 
 /* 
-   #isFunction
+   #isArray
    ========================================================================== */
 
 /**
- * The isArray function returns true is the value is an array.
+ * The isArray function returns true if the argument is an Array.
  */
 
 singular.isArray = function(value) { return value.constructor === Array; };
@@ -51,7 +51,7 @@ singular.isArray = function(value) { return value.constructor === Array; };
    ========================================================================== */
 
 /**
- * The isFunction function returns true is the value is a function.
+ * The isFunction function returns true if the argument is a Function.
  */
 
 singular.isFunction = function(value) { return typeof value === 'function'; };
@@ -61,7 +61,7 @@ singular.isFunction = function(value) { return typeof value === 'function'; };
    ========================================================================== */
 
 /**
- * The isObject function returns true is the value is a string.
+ * The isObject function returns true if the argument is an Object.
  */
 
 singular.isObject = function(value) { return typeof value === 'object'; };
@@ -71,7 +71,7 @@ singular.isObject = function(value) { return typeof value === 'object'; };
    ========================================================================== */
 
 /**
- * The isNodeList function returns true is the value is a NodeList.
+ * The isNodeList function returns true if the argument is a NodeList.
  */
 
 singular.isNodeList = function(value) { return value == '[object NodeList]'; };
@@ -81,7 +81,7 @@ singular.isNodeList = function(value) { return value == '[object NodeList]'; };
    ========================================================================== */
 
 /**
- * The isDefined function returns true is the value is defined.
+ * The isDefined function returns true if the argument is defined.
  */
 
 singular.isDefined = function(value) { return typeof value !== 'undefined'; };
@@ -91,7 +91,7 @@ singular.isDefined = function(value) { return typeof value !== 'undefined'; };
    ========================================================================== */
 
 /**
- * The isUndefined function returns true is the value is undefined.
+ * The isUndefined function returns true if the argument is undefined.
  */
 
 singular.isUndefined = function(value) { return typeof value === 'undefined'; };
@@ -101,7 +101,7 @@ singular.isUndefined = function(value) { return typeof value === 'undefined'; };
    ========================================================================== */
 
 /**
- * The concat function returns a concatenated string from multiple arguments.
+ * The concat function concatenates multiple arguments and returns a String.
  */
 
 singular.concat = function() { return Array.prototype.slice.call(arguments).join(""); };
