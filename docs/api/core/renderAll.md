@@ -1,6 +1,6 @@
 # singular.renderAll
 
-The `renderAll` function replaces the innerHTML of a multiple elements with a value.
+The `renderAll` function replaces the innerHTML of multiple elements with a value.
 
 ## Usage
 
