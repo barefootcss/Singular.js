@@ -30,4 +30,4 @@ The `init` reserved property is ideal for adding events, since it's only called 
 		</body>
 	</html>
 
-[Next Step](step-2.md)
+[Next Step](styling.md)

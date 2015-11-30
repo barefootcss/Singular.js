@@ -9,6 +9,7 @@ module.exports = function(grunt) {
 					'src/modules/core.js',
 					'src/modules/route.js',
 					'src/modules/http.js',
+					'src/components/view.js',					
 				    'src/singular.suffix.js'  	
 				],
 				dest: 'builds/singular.full.js'

@@ -34,7 +34,7 @@ The `draw` property calls a function that returns the innerHTML of our component
 
 __renderOne function__
 
-The `renderOne` function makes the object observable, and renders it in the <div>.
+The `renderOne` function makes the object observable, and renders it in the DIV.
 
 	singular.renderOne(example, "#example");
 
